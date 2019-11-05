@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: mongo-container
+    network_mode: host
+  muzixapp:
+    image: muzixapp
+    build: muzix/
+    restart: always
+    container_name: muzixapp-container
+    network_mode: host
+  zuul:
+    image: zuulapi
+    build: spring-boot-zuulgetwayproxy/
+    restart: always
+    container_name: zuul-container
+    network_mode: host
+  eureka:
+    image: eurekaapi
+    build: spring-eureka-service/
+    restart: always
+    container_name: eureka-container
+    network_mode: host
+  config:
+    image: configapi
+    build: spring-config-server/
+    restart: always
+    container_name: config-container
+    network_mode: host    
+
